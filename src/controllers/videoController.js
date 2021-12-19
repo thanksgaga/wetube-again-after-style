@@ -15,7 +15,6 @@ export const watch = async (req, res) => {
 	if (!video) {
 		return res.render("404", { pageTitle: "Video not found." });
 	}
-	console.log(video);
 	return res.render("watch", { pageTitle: video.title, video });
 };
 
@@ -78,7 +77,6 @@ export const postUpload = async (req, res) => {
 		user.save();
 		return res.redirect("/");
 	} catch (error) {
-		console.log(error);
 		return res.status(400).render("upload", {
 			pageTitle: "Upload Video",
 			errorMessage: error._message,
