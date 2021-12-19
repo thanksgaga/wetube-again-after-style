@@ -39,6 +39,7 @@ export const postEdit = async (req, res) => {
 	} = req.session;
 	const { id } = req.params;
 	const { title, description, hashtags } = req.body;
+
 	const video = await Video.exists({ _id: id });
 	if (!video) {
 		return res.status(404).render("404", { pageTitle: "Video not found." });
@@ -64,11 +65,13 @@ export const postUpload = async (req, res) => {
 	} = req.session;
 	const { location: fileUrl } = req.file;
 	const { title, description, hashtags } = req.body;
+	const isHeroku = process.env.NODE_ENV === "production";
+
 	try {
 		const newVideo = await Video.create({
 			title,
 			description,
-			fileUrl,
+			fileUrl, //isHeroku? video.location: video.path;
 			owner: _id,
 			hashtags: Video.formatHashtags(hashtags),
 		});
