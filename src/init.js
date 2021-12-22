@@ -9,8 +9,6 @@ import app from "./server";
 const PORT = process.env.PORT || 4000;
 
 const handleListening = () =>
-	console.log(
-		`✅ Server listenting on https://wetube-reloaded-gaga.herokuapp.com:${PORT} 🚀`,
-	);
+	console.log(`✅ Server listenting on http://localhost:${PORT} 🚀`);
 
 app.listen(PORT, handleListening);
